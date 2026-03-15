@@ -1,6 +1,6 @@
-import {reset} from 'redux-form';
-import {store} from '../store';
+import { reset } from 'redux-form';
 
 export const resetFormHandler = (formName) => {
-    store.dispatch(reset(formName));
+  const store = require('../store').default;
+  store.dispatch(reset(formName));
 };

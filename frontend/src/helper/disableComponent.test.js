@@ -101,3 +101,60 @@ describe('setDisabledSaveButtonSemester function', () => {
         });
     });
 });
+
+describe('setDisabledSaveButtonSemester edge cases', () => {
+
+    const pristine = false;
+    const submitting = false;
+
+    it('should return false if semester has no id', () => {
+
+        const semesterWithoutId = {
+            description: 'test semester',
+            semester_groups: []
+        };
+
+        expect(
+            setDisabledSaveButtonSemester(pristine, submitting, semesterWithoutId, selectedGroups)
+        ).toBeFalsy();
+    });
+
+    it('should return false if selectedGroups is empty', () => {
+
+        expect(
+            setDisabledSaveButtonSemester(pristine, submitting, semester, [])
+        ).toBeFalsy();
+    });
+
+    it('should return false if semester_groups is empty', () => {
+
+        const semesterEmptyGroups = {
+            ...semester,
+            semester_groups: []
+        };
+
+        expect(
+            setDisabledSaveButtonSemester(pristine, submitting, semesterEmptyGroups, selectedGroups)
+        ).toBeFalsy();
+    });
+
+    it('should detect removed group', () => {
+
+        const semesterWithTwoGroups = {
+            ...semester,
+            semester_groups: [
+                { id: 52, title: '21 (201-Б)' },
+                { id: 53, title: '22 (204-A)' }
+            ]
+        };
+
+        const updatedSelectedGroups = [
+            { id: 52, label: '21 (201-Б)' }
+        ];
+
+        expect(
+            setDisabledSaveButtonSemester(pristine, submitting, semesterWithTwoGroups, updatedSelectedGroups)
+        ).toBeFalsy();
+    });
+
+});
