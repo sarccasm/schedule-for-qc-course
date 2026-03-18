@@ -20,13 +20,25 @@ describe('resetFormHandler', () => {
 
   it('should call reset with correct form name', () => {
     const formName = 'testForm';
+
     resetFormHandler(formName);
+
     expect(reset).toHaveBeenCalledWith(formName);
   });
 
-  it('should dispatch reset action', () => {
+  it('should dispatch reset action with correct payload', () => {
     const formName = 'anotherForm';
+
     resetFormHandler(formName);
-    expect(store.dispatch).toHaveBeenCalled();
+
+    expect(store.dispatch).toHaveBeenCalledWith(reset(formName));
+  });
+
+  it('should call dispatch exactly once', () => {
+    const formName = 'form123';
+
+    resetFormHandler(formName);
+
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
   });
 });

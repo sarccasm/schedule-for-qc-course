@@ -7,6 +7,7 @@ export const setDisableButton = (pristine, submitting, id) => {
     }
     return true;
 };
+
 export const getClearOrCancelTitle = (id, t) => {
     return id === undefined ? t(CLEAR_BUTTON_LABEL) : t(CANCEL_BUTTON_TITLE);
 };
