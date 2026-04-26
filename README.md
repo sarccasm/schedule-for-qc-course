@@ -1,5 +1,7 @@
 # Class Schedule
 
+[![Tests](https://github.com/sarccasm/schedule-for-qc-course/actions/workflows/tests.yml/badge.svg)](https://github.com/sarccasm/schedule-for-qc-course/actions/workflows/tests.yml)
+
 ## General info
 
 This repository contains the source code of the Class Schedule Project.

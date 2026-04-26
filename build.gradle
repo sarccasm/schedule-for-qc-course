@@ -60,6 +60,32 @@ test {
     finalizedBy jacocoTestReport
 }
 
+task unitTest(type: Test) {
+    group = 'verification'
+    useJUnitPlatform {
+        includeTags 'unit'
+    }
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    reports {
+        junitXml.outputLocation = layout.buildDirectory.dir('test-results/unitTest')
+        html.outputLocation = layout.buildDirectory.dir('reports/tests/unitTest')
+    }
+}
+
+task apiTest(type: Test) {
+    group = 'verification'
+    useJUnitPlatform {
+        includeTags 'integration'
+    }
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    reports {
+        junitXml.outputLocation = layout.buildDirectory.dir('test-results/apiTest')
+        html.outputLocation = layout.buildDirectory.dir('reports/tests/apiTest')
+    }
+}
+
 // ==================== JACOCO ====================
 jacoco {
     toolVersion = "0.8.12"
